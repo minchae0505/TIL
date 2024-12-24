@@ -1,0 +1,56 @@
+
+## 안드로이드를 처음 배우면
+
+Java VS kotlin으로 고민을 해보신 적 다들 한 번쯤은 있을거다.
+
+나도 처음 시작할 때 어떤 언어가 현업에서 많이 쓰이는 지 모르다 보니 Java와 kotlin 둘 중 어떤 언어를 공부하고 어떤 언어로 코딩을 해야 하는지 궁금하고 많이 고민했다. 또한 둘 중 하나만 공부하면 안되나? 이런 생각도 했었다. 고민만 하다가 시작도 못할 것 같아 고민 해결을 위해 두 언어에 대해 조사를 했다. 
+
+### 코틀린, 구글에게 선택 받다?
+
+2017년에 구글이 안드로이드의 공식 언어로 코틀린을 추가한 이후로 코틀린이 주목을 받아오고 있습니다. 자바보다 더 편리하게 개발을 할 수 있도록 돕는 장점이 많았기 때문!
+
+[https://android-developers.googleblog.com/2017/05/android-announces-support-for-kotlin.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed:+blogspot/hsDu+(Android+Developers+Blog)](https://android-developers.googleblog.com/2017/05/android-announces-support-for-kotlin.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed:+blogspot/hsDu+(Android+Developers+Blog))
+
+(공식 원문)
+
+### 코틀린의 빵빵한 지원 +더 간단한 문법
+
+또한 자바보다 코틀린의 문법이 더 간단하고 자바보다 코틀린 언어 자체에서 지원해주는 기능이 많다.
+![](https://velog.velcdn.com/images/and-chae/post/5648222e-b877-43b2-b4b5-1cf8c1e6a8e7/image.png)
+
+
+같은 실행 결과를 보여주는 코드만 보더라도 코틀린이 훨씬 간단!
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+
+```
+
+```kotlin
+fun main() {
+    println("Hello, World!")
+}
+
+```
+
+### 자바와 호환까지?
+
+코틀린은 자바 프로그래밍 언어와도 잘 연동됩니다. 큰 힘을 들이지 않고 두 언어 사이에서 상호 운용할 수 있다는 점이 코틀린의 큰 장점 중 하나로 뽑힌다.
+
+→ 현재 자바와 코틀린 중 코틀린 선호도가 더 높아지고 있는 것
+
+게다가 Expedia, Flipboard, Pinterest, Square 등 여러 주요 개발 업체가 이미 프로덕션 앱에 활용하기 위해 코틀린을 도입한 지 벌써 8~9년이 다 되어가고 있다. 여기까지만 보면 “코틀린만 공부해도 되겠는데?” 라는 생각을 할 수 도 있지만 코틀린의 아주 많은 장점들에도 불구하고 자바가 계속 사용되는 이유가 분명히 있겠지!
+
+## 근본은 자바
+
+구글이 코틀린을 공식 언어로 채택하기 전에는 주로 자바를 이용해 프로그래밍을 하는 기업들이 많았다. 현재도 대기업을 비롯한 여러 회사에서는 자바를 사용하고 있다. 또한 코틀린의 장점 중 하나인 코틀린과 자바 두 언어의 호환성! 
+
+결국 자바로 개발된 앱을 유지보수를 하거나 다양한 여러 코드를 이해하기 위해선 결국 자바도 공부를 해야 한다.
+
+## 그래서 나는..
+
+사실 자바에 대해 조사하기 전까진 나도 코틀린의 장점에 혹해 “코틀린만 공부해도 되겠는데?” 이런 생각들을 가지고 있었다. 그러나 안드로이드를 더 깊이 이해하고 시야를 넓히려면 두 언어 모두 공부하는 게 좋을 것 같다. 
