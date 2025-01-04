@@ -1,0 +1,37 @@
+🐣’Linear가 뭐지??’
+
+**Linear Layout**
+
+  선
+
+## 왜 LinearLayout일까?
+
+Linear = 선형의
+
+즉 Linear Layout은 **선 형태로 layout을 만든다는 것!**
+
+Linear Layout에서 선은 딱 2가지의 형태로 존재할 수 있어.
+
+1. 수직
+2. 수평
+
+- **수직**으로 차곡차곡 **쌓으면 vertical(오른쪽)**
+- **수평**으로 차곡차곡 **붙이면 horizontal(왼쪽)**
+
+⭐vertial, horizontal을 설정해줄 때 **orientation**을 사용해.
+
+`android:orientation="원하는 정렬 방식"`
+
+android : orientation =”veritical 또는 horizontal”
+
+1분 정리
+
+ **LinearLayout은 가로 혹은 세로로 순차적으로 쌓아나가는 (중첩 되는) Layout**
+
+```xml
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical" >
+</LinearLayout>
+```
