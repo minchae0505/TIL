@@ -1,0 +1,130 @@
+# 생성자 오버로딩(Overloading)
+
+### ⭐매개 변수를 달리하는 생성자를 여러 새 선언하는 것
+
+⚠️생성자 오버로딩 시 매개 변수의 타입과 개수 그리고 선언된 순서가 똑같을 경우 매개변수 이름만 바꾸는 것은 생성자 오버로딩이라고 볼 수 없다.
+
+예를 들어 당신은 교육부에서 일하는 직원이며 여러 학교들에 대한 총괄을 담당하고 있다고 해봅시다. 당신이 담당하는 학교들의 정보를 가지고 있는 School 클래스가 있다고 해봅시다.
+
+이 클래스는 소프트웨어 마이스터고등학교들에 대한 정보를 담고 있어요.
+
+```java
+public class School {
+
+    String kind = "고등학교";
+    String name;
+    String major;
+    String location;
+}
+```
+
+필드를 보면 
+학교의 종류(?)초, 중, 고 중 고등학교.
+
+학교의 이름
+
+이 학교에서 배우는 전공
+
+학교의 위치
+
+에 대한 정보가 있다는 걸 알 수 있습니다.
+
+```java
+
+   School(){
+
+    }
+
+    School(String name){
+
+    }
+
+    School(String name, String major){
+
+    }
+
+    School(String name, String major, String location){
+
+    }
+
+```
+
+School클래스의 생성자 부분만 떼어서 가져왔습니다.
+
+생성자들을 보면 각 생성자들의 매개변수들이 조금씩 다른 걸 알 수 있습니다.
+
+첫 번째 생성자는 학교가 고등학교인 것만 정해졌습니다. (학교 건설 계획 추진 전)
+
+두 번째 생성자는 고등학교이고 학교의 이름, 학교에서 배울 전공이 있음을 알 수 있죠.
+(학교 위치 선정 중)
+
+세 번째 생성자는 고등학교이고 이름이 있으며 배우는 전공, 위치까지 알 수 있습니다.
+(개교 준비 중)
+
+이처럼 다 같은 학교이지만 매개변수(진행 상황)가 다른 학교들이 있음을 알 수 있죠.
+
+위 내용들을 합쳐 조금 멋있게 만들면 
+
+```java
+public class School {
+
+    String kind = "고등학교";
+    String name;
+    String major;
+    String location;
+
+    School(){
+
+    }
+
+    School(String name){
+        this.name = name;
+
+    }
+
+    School(String name, String major){
+        this.name = name;
+        this.major = major;
+    }
+
+    School(String name, String major, String location){
+        this.name = name;
+        this.major = major;
+        this.location = location;
+    }
+
+}
+
+```
+
+이렇게 됩니다.
+
+이제 조금 더 멋있게 만들어주기 위해 정보들을 출력해 봅시다!
+
+```java
+public class SchoolExample{
+    public static void main(String[] args){
+        School school1 = new School();
+        System.out.println("school1.kind : " + school1.kind);
+        System.out.println();
+
+        School school2 = new School("소마고");
+        System.out.println("school1.kind : " + school2.kind);
+        System.out.println("schoo2.major: " + school2.name);
+        System.out.println();
+
+        School school3 = new School("소마고","컴퓨터공학");
+        System.out.println("school3.kind : " + school3.kind);
+        System.out.println("school3.name: " + school3.name);
+        System.out.println("school3.major: " + school3.major);
+        System.out.println();
+
+        School school4 = new School("소마고", "컴퓨터공학", "대전");
+        System.out.println("school4.kind : " + school4.kind);
+        System.out.println("school4.name: " + school4.name);
+        System.out.println("school4.major: " + school4.major);
+        System.out.println("school4.location: " + school4.location);
+        System.out.println();
+    }
+}
+```
