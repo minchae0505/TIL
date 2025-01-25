@@ -1,0 +1,134 @@
+gravity: 중력
+
+**레이아웃 안의 뷰들을 정렬하는 역할 (**뷰에게 중력 지정해서 정렬하기)
+
+- gravity는 **해당 뷰 안에서 콘텐츠가 어떻게 배치될 지**를 설정
+- 읽으면 더 쉽게 이해⭕
+    
+    view는 눈에 보이는 거고
+    layout은 눈에 보이지 않지만 view의 위치를 잡아주는 역할을 한다.
+    
+    +layout도 뷰이지만 특이하게도 안보임
+    
+
+### gravity와 layout_gravity의 차이
+
+gravity는 **레이아웃 안의 뷰**들을 **정렬**하는 역할
+Layout_gravity는 **view 자체를 어디에 위치** 시킬 건지 배치해주는 역할
+
+- gravity는 layout 안에 있는 모든 veiw들을 한꺼번에 같은 방향으로 정렬 시킨다.
+    
+    → 같은 방향으로 여러 뷰를 정렬 시켜야 하고 한 개의 뷰만 다른 위치에 정렬해야 할 때 layout에 gravity를 적용하고 다른 위치에 정렬할 한 개의 뷰에만 layout_gravity를 적용 시키면 된다. 
+    
+
+## 특징
+
+- 모든 레이아웃들이 공통으로 가진 속성이다.
+- android:gravity="원하는 속성 값"
+- 속성 값들이 정말 다양하게 있는데 이 속성들을 혼합하여 사용할 수 ⭕
+- LinearLayout, RelativeLayout, TextView에서는 속성이 동일
+
+## 속성 값들
+
+- `fill`: 대상 객체를 수직 방향과 수평 방향으로 여유 공간만큼 확대하여 채우기
+- `fill_horizontal` : 대상 객체를 수평 방향으로 여유 공간만큼 확대하여 채우기
+- `fill_vertical` : 대상 객체를 수직 방향으로 여유 공간만큼 확대하여 채우기
+
+- `top` : 대상 객체를 위쪽 끝에 배치하기
+
+- `start` : 대상 객체를 글자 시작  위치에 배치
+
+`bottom`: 대상 객체를 아래쪽 끝에 배치
+
+- `end` : 대상 객체를 글자가 끝나는 위치에 배치
+
+- `center` : 대상 객체를 수직 방향과 수평 방향의 중앙에 배치하기
+
+- `center_vertical` : 대상 객체를 수직 방향의 중앙에 배치하기
+
+- `center_horizontal` : 대상 객체를 수평 방향의 중앙에 배치하기
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@color/black"
+    android:gravity="clip_horizontal|end"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="400dp"
+        android:text="View 1" />
+
+</LinearLayout>
+```
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/96c0343c-2cb9-4aeb-9291-0ef4be07e17c/08460a15-948d-4421-93a8-67956fc2e872/image.png)
+
+- `clip_horizontal` : 해당 위젯의 세로 길이가 부모 뷰그룹 보다 클 경우 넘어서는 부분은 잘라낸다.
+- 지금 부모 뷰그룹(LinearLayout)의 height이 300dp인데 자식인 Button의 height이 400dp로 부모 뷰그룹의 height보다 크다
+- 주로  `start`, `end`와 함께 쓰인다.
+`clip_horizontal|top`, `clip_horizontal|end`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@color/black"
+    android:gravity="clip_vertical|end"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:text="View 1" />
+
+</LinearLayout>
+```
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/96c0343c-2cb9-4aeb-9291-0ef4be07e17c/ddac57a4-c914-48da-8deb-98c61b5c2842/image.png)
+
+- `clip_vertical` : 해당 위젯의 가로 길이가 부모 뷰그룹 보다 클 경우 넘어서는 부분은 잘라냅니다.
+- 주로  `start`, `end`와 함께 쓰인다.
+`clip_vertical|end`, `clip_vertical|start`
+
+# layout_gravity
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+android:layout_width="413dp"
+android:layout_height="118dp"
+android:background="@color/black"
+android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="start|bottom"
+        android:text="View 1" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:text="View 2" />
+
+<Button
+    android:id="@+id/button3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="View3" />
+</LinearLayout>
+```
