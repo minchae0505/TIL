@@ -1,0 +1,189 @@
+🐣’상대적인(뭔가 비교를 하나?)’
+
+## 왜 Relative Layout일까?
+
+Relative = 상대적인
+
+즉, **다른 뷰와의 상대적인 위치 관계를 설정**하여 화면에 배치한다는 소리다.
+
+(-이미 화면에 출력된 특정 뷰를 기준으로 방향을 지정하여 배치한다.)
+
+그러면 상대적인 위치 관계를 설정할 다른 뷰가 어떤 뷰를 말하는 건지 어떻게 알아?
+
+⭐기준이 되는 뷰를 내가 **직접 지정**해주면 돼! **기준이 되는 뷰를 지정하기 위해서는** **기준으로 삼으려는 뷰에 id값이 설정되어 있어야** 함!
+
+```
+RelativeLayout은 다른 뷰와의 상대적인 위치 관계를 설정하여 화면에 배치하는 레이아웃을 말합니다. 이때 기준이 되는 뷰를 지정하기 위해서는 기준뷰에 id값이 설정되어 있어야 합니다.LinearLayout이 여러개로 중첩된 뷰그룹을 사용하여 화면을 나타내는 반면 RelativeLayout은 하나의 뷰그룹 안에 자식 뷰들을 배치하여 화면을 나타낼 수 있습니다.
+```
+
+> ❓기존의 레이아웃(Linear, Relative 등등)에 비해 레이아웃이 중첩하지 않도록 복잡한 레이아웃을 만들 수 있습니다.
+> 
+
+이게 무슨 말이냐 하면
+
+```xml
+ <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+```
+
+단순하게 UI에다가 id를 만들어주라는 얘기임(참 쉽죠잉..??!!!)
+
+참고로 이 button의 id는 add가 되는 것임.
+
+## RelativeLayout 배치 규칙
+
+각 속성에 입력하는 값은 기준이 되는 뷰의 id임!
+
+- `android:layout_above` **(기준으로 삼으려는 view의 id)**: 기준 뷰의 위쪽에 배치
+- `android:layout_below`: 기준 뷰의 아래쪽에 배치
+- `android:layout_toLeftOf` : 기준 뷰의 왼쪽에 배치
+- `android:layout_toRightOf` : 기준 뷰의 오른쪽에 배치
+
+❓위 속성들을 사용하지 않으면 어떻게 될까?
+
+**Before**
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HELLO" />
+</RelativeLayout>
+```
+…
+
+허허
+
+‼️이를 통해 알 수 있는 사실!
+
+- `RelativeLayout`은 `LinearLayout`처럼 자동으로 가로세로 방향으로 배치되지 않아요!
+- RelativeLayout을 사용할 땐 반드시 어떤 뷰를 기준으로  어디에 배치 시킬 것 인지를
+    
+    지정해줘야 해요!
+    
+
+**After**
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HELLO"
+        android:layout_toRightOf="@+id/testImage"/>
+</RelativeLayout>
+
+```
+
+- button을 ImageView를 기준으로 잡고
+    
+    어디에 위치 시킬 건 지 알려주는 속성들 중 기준 뷰의 오른쪽에 위치 시키는 layout_toRightOf를 사용해 줬죵
+    
+
+## 맞춤 정렬하는 align 속성
+
+위에서 이미지의 세로 크기가 버튼보다 커서 버튼이 이미지 위쪽에 맞춰져 있음. 그런데 어떨 때는 
+
+상대 뷰의 아래쪽에 맞춰야 할 수도 있죠😎
+
+이처럼 상대 뷰의 어느 쪽에 맞춰서 정렬할 지를 정하는 속성들 입니당
+
+(이 속성에 입력하는 값 역시 기준이 되는 뷰의 id이죠.)
+
+- `android:layout_alignTop` : 기준 뷰와 위쪽을 맞춤
+- `android:layout_alignBottom` : 기준 뷰와 아래쪽을 맞춤
+- `android:layout_alignLeft` : 기준 뷰와 왼쪽을 맞춤
+- `android:layout_alignRight` : 기준 뷰와 오른쪽을 맞춤
+- `android:layout_alignBaseline` : 기준 뷰와 텍스트 기준선을 맞춤
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HELLO"
+        android:layout_toRightOf="@+id/testImage"
+        android:layout_alignBottom="@id/testImage"/>
+</RelativeLayout>
+```
+
+
+button을 testImage란 id를 가진 ImageView를 
+
+기준으로 
+
+1. layout_toRightOf를 이용하여 ImageView의 오른쪽에 위치하도록 하고
+2. layout_alignBottom을 이용하여 ImageView와 아랫부분을 맞춰주었죵 하하
+
+그런데 말입니다. **부모 뷰 그룹과의 정렬을 위한 속성, 자식뷰들과의 정렬을 위한 속성**
+
+개념이 혼동되기 시작합니다.
+
+## **부모 뷰 그룹과의 정렬을 위한 속성**
+
+상위 레이아웃을 기준으로 맞춤 정렬하는 속성도 있다. 뷰를 부모 영역의 오른쪽 또는 아래쪽에 붙이고 싶을 때 사용하는 속성이다.
+
+⭐이 Parent 속성들을 사용할 땐 기준이 되는 뷰를 입력해 주는 게 아니라 true 또는 false 값을 줘야함
+
+(🌠이때 true랑 false는 반드시 소문자로 써줘야 함!! 대문자로 써 놓고 안된다고 10분 넘게 고민함,,)
+
+- `android:layout_alignParentTop` : 부모의 위쪽에 맞춤
+- `android:layout_alignParentBottem` : 부모의 아래쪽에 맞춤
+- `android:layout_alignParentLeft` : 부모의 왼쪽에 맞춤
+- `android:layout_alignParentRight` : 부모의 오른쪽에 맞춤
+- `android:layout_centerHorizontal` : 부모의 가로 방향 중앙에 맞춤
+- `android:layout_centerVertical` : 부모의 세로 방향 중앙에 맞춤
+- `android:layout_centerInParent` : 부모의 가로, 세로 중앙에 맞춤
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HELLO"
+        android:layout_alignBottom="@id/testImage"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
+```
+
+
+button을 testImage란 id를 가진 ImageView를 
+
+기준으로 
+
+1. layout_alignBottom을 이용하여 ImageView와 끝나는 아랫부분 지점이 같도록 하고
+2. layout_alignParentRight을 이용하여 부모 뷰인 ImageView를 기준으로 오른쪽으로 위치하게 해주었죠
