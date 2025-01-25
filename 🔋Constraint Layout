@@ -1,0 +1,226 @@
+🐣’constraint? 어떤 제약을 걸고 넘어지나?’
+
+## 왜 ConstraintLayout일까?
+
+constraint = 제약
+
+즉, 상대 위치(다른 뷰의 위치)에 따라 **제약을 걸어** 유연한 방식으로 위젯의 위치와 크기를 지정할 수 있는 layout
+
+T.M.I: 우리가 새로 xml 파일을 만들었을 때 기본으로 적용되어 있는 Layout이 바로 이 친구임
+
+### **근데 상대 위치라는 것을 어떻게 알지?**
+
+1. RelativeLayout이랑 똑같음.  →  ‘ id를 통해서 알 수 있다 ’ 이 말임.
+2. parent 키워드를 사용할 수 있음.  ( → parent는 현재 위젯이 가진 부모)
+
+## **ConstraintLayout이 지원하는 기능**
+
+엄청 많음
+
+- Relative positioning
+- Margins
+- Centering positioning
+- Circular positioning
+- Visibility behavior
+- Dimension constraints
+- Chains
+- Virtual Helpers objects
+- Optimizer
+
+## **1. Relative Positioning (상대적 배치)**
+
+상대 위치를 기준으로 제약을 걸어주는 속성들(⚠️겁나 많음 주의⚠️)
+
+자자 너무 많아서 복잡하고 뭐라는 지 모르겠고 어려우니까 하나씩  뜯어보면서 이해 시켜 주겠음.
+
+- `layout_constraintLeft_toLeftOf`
+- `layout_constraintLeft_toRightOf`
+- `layout_constraintRight_toLeftOf`
+- `layout_constraintRight_toRightOf`
+- `layout_constraintTop_toTopOf`
+- `layout_constraintTop_toBottomOf`
+- `layout_constraintBottom_toTopOf`
+- `layout_constraintBottom_toBottomOf`
+- `layout_constraintBaseline_toBaselineOf`
+- `layout_constraintStart_toEndOf`
+- `layout_constraintStart_toStartOf`
+- `layout_constraintEnd_toStartOf`
+- `layout_constraintEnd_toEndOf`
+
+<aside>
+💡
+
+layout_constraintLeft_toLeftOf="@id/아이디"
+
+ - constraint -> **“제약을 주겠다”**
+ - Left -> **속성이 적용되는 뷰**의 왼쪽 변
+ - toLeftOf -> **Of 뒤에 오는 뷰**의 왼쪽 변
+
+ 즉, 속성이 적용되는 뷰의 왼쪽 변을 **id로 지정해준 뷰**의 왼쪽 변에 맞춘다는 뜻.
+
+</aside>
+
+아직 모르겠지?  그래서 예시 하나 더 들어줌
+
+<aside>
+💡
+
+layout_constraintLeft_toRightOf="@id/아이디"
+
+ - constraint -> **“제약을 주겠다”**
+ - Left -> **속성이 적용되는 뷰**의 왼쪽 변
+ - toRightOf -> **Of 뒤에 오는 뷰**의 오른쪽 변
+
+ 즉, 속성이 적용되는 뷰의 왼쪽 변을 **id로 지정해준 뷰**의 오른쪽 변에 맞춘다는 뜻.
+
+</aside>
+
+## ConstraintLayout의 특이점
+
+여태 본 LinearLayout이랑, RelativeLayout은 **속성을 쓸 때** android: 속성 값 형식으로 써 줬잖음
+
+근데 이 친구는 app: 속성 값 형식으로 사용해 줘야 함.
+
+```xml
+        <Button android:id="@+id/buttonA" ... />
+        <Button android:id="@+id/buttonB" ...
+                app:layout_constraintLeft_toRightOf="@+id/buttonA" />
+```
+
+## 본격 상대적 위치 배치 예시
+
+이해를 도와줄 예시들을 가져와 봤음
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/red"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FF0000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+		    android:id="@+id/black"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        app:layout_constraintLeft_toRightOf="@+id/red"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+<aside>
+💡
+
+![스크린샷 2024-10-09 131908.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/96c0343c-2cb9-4aeb-9291-0ef4be07e17c/78a33606-4c3d-483b-96cd-dfee7670846a/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2024-10-09_131908.png)
+
+</aside>
+
+1. app:layout_constraintLeft_toLeftOf="parent"
+2. app:layout_constraintTop_toTopOf="parent"
+    - parent는 현재 위젯이 가진 부모, ConstraintLayout을 의미
+    - 조건을 해석하면,
+        
+        “현재 TextView(red)의 좌측 정렬은 부모의 좌측 정렬과 맞춰라” 
+        
+        “현재 TextView(red)의 위쪽 정렬은 부모의 위쪽 정렬과 맞춰라” 가 된다.
+        
+
+1. app:layout_constraintLeft_toRightOf="@+id/red"
+2. app:layout_constraintTop_toTopOf="parent"
+- 현재 위젯을 "@+id/red"를 기준으로 정렬하는 의미
+- parent는 현재 위젯이 가진 부모, ConstraintLayout을 의미
+- 조건을 해석하면,
+    
+    “현재 TextView(black)의 좌측 정렬은 TextView(red)의 좌측 정렬과 맞춰라”
+    
+    “현재 TextView(black)의 위쪽 정렬은 TextView(red)의 위쪽 정렬과 맞춰라”
+    
+
+## 🌠그리고 이거 정말 엄청 중요한 건데
+
+`xmlns:app="http://schemas.android.com/apk/res-auto"` 이거 반드시 추가해 줘야 함!!
+
+이거 없이 ConstraintLayout을 사용하겠다? 응 ConstraintLayout 기능을 말짱 도루묵으로 만드는 사람 되는 거임… (더 자세한 내용은 나중에 xml에서의 import기능(xml)을 더 공부하고 알려주겠음)
+
+왜냐, 내가 해봤거든🥲✌️ (`xmlns:app="http://schemas.android.com/apk/res-auto"` 없는 코드)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/red"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FF0000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/black"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        app:layout_constraintLeft_toRightOf="@+id/red"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+위 코드 복붙해서 안드 스튜디오에서 실행해보면  app 철자 부분에 빨간 줄이 뜸
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/96c0343c-2cb9-4aeb-9291-0ef4be07e17c/53175f93-53f1-44d0-893e-bb1e3682e703/7d8fd692-0835-4762-b10e-f57f6d478e3f.png)
+
+실행 화면도 이렇게 보이고
+
+⚠️그래서 나는 app 철자를 android로 고쳐봄
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/red"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FF0000"
+        android:layout_constraintLeft_toLeftOf="parent"
+        android:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/black"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:layout_constraintLeft_toRightOf="@+id/red"
+        android:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+위 코드 복붙해서 안드 스튜디오에서 실행해보면 빨간 줄은 안 뜸. 아주 멀쩡한 코드처럼 보임 (노란 밑줄이 있으나 보통 초보자들은 화면이 보이니까 먼가 문제가 생겼다는 것을 인식하지 못함 ⇒ ”나”). 
+
+그러나 멀쩡한 코드처럼 보이는 것일 뿐, 실행 화면을 보면
+
+이따구로 되어있음
+
+즉,`xmlns:app="http://schemas.android.com/apk/res-auto"`  이게 없으면 ConstraintLayout을 제대로 활용하지 못하고 있다는 말임
+
+따라서 반드시 `xmlns:app="http://schemas.android.com/apk/res-auto"` 이거 추가 해주고
+
+app:layout_constraintTop_toTopOf="id 또는 parent" 를 지정해 줘야 함
+
+## 2. **Margins (여백)**
