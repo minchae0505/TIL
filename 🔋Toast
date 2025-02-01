@@ -1,0 +1,94 @@
+🐣토스트? 빵? 맛있겠당.
+
+-맛있는 빵만큼 중요함 . 배고프당.
+
+Toasts란?
+
+<aside>
+💡
+
+**토스트 메시지는 작은 팝업으로 작업에 관한 간단한 피드백을 제공하는 역할**
+
+메시지에 필요한 공간만 차지하며 **진행 중인 활동은 그대로 표시**되고 상호작용도 유지된다. 토스트 메시지는 일정 시간이 지나면 자동으로 사라진다.
+
+</aside>
+
+🚨 주의 사항
+
+- 앱이 Android 12(API 수준 31) 이상을 타겟팅 한다면 토스트 메시지는 텍스트 두 줄로 제한되고 텍스트 옆에 애플리케이션 아이콘이 표시됨.
+- 텍스트의 줄 길이는 화면 크기에 따라 다르므로 텍스트를 최대한 짧게 만드는 것이 좋다.
+
+### 토스트 메시지 사용의 대안
+
+- 앱이 포그라운드에 있다면 토스트 메시지 대신 [스낵바](https://material.io/components/snackbars)를 사용하는 것이 좋음.
+스낵바에는 사용자가 실행할 수 있는 옵션이 포함되어 있고 이를 통해 더 나은 앱 환경을 제공할 수 있다.
+- 앱이 백그라운드에 있고 사용자가 어떤 조치를 취하게 하려면 토스트 메시지 대신 [알림](https://developer.android.com/develop/ui/views/notifications?hl=ko)을 사용하는 것이 더 좋음.
+
+### 토스트 메시지 메서드 호출 체인
+
+다음 코드 스니펫과 같이 `Toast` 객체를 보유하지 않도록 메서드를 연결 가능.
+
+```java
+Toast.makeText(context, text, duration).show();
+//자바, 코틀린 모두 동일
+```
+
+**토스트 메시지 객체 인스턴스화**
+
+다음 매개변수를 갖는 [`makeText()`](https://developer.android.com/reference/android/widget/Toast?hl=ko#makeText(android.content.Context,%20int,%20int)) 메서드를 사용.
+
+1. 활동 [`Context`](https://developer.android.com/reference/android/content/Context?hl=ko)
+2. 사용자에게 표시되어야 하는 텍스트
+3. 토스트 메시지가 화면에 남아 있어야 하는 시간
+
+`makeText()` 메서드는 올바르게 초기화된 `Toast` 객체를 반환.
+
+### 토스트 메시지 표시
+
+토스트 메시지를 표시하려면 다음 예와 같이 [`show()`](https://developer.android.com/reference/android/widget/Toast?hl=ko#show()) 메서드를 호출.
+
+```java
+CharSequence text = "Hello toast!";
+int duration = Toast.LENGTH_SHORT;
+
+Toast toast = Toast.makeText(this /* MyActivity */, text, duration);
+toast.show();
+```
+
+- 코틀린
+    
+    ```kotlin
+    val text = "Hello toast!"
+    val duration = Toast.LENGTH_SHORT
+    
+    val toast = Toast.makeText(this, text, duration) // in Activity
+    toast.show()
+    ```
+    
+
+❓**duration이란 지속, (지속되는) 기간** 뜻으로 토스트 메시지 노출 시간을 의미한다.
+
+duration 위치에 들어갈 수 있는 속성으로는 `Toast.Length_LONG` 과 `Toast.Length_SHORT` 가 있다.
+
+**LONG = 3.5초, SHORT = 2초 지속** 
+
+### 토스트 메시지 노출 시간 조정
+
+Toast 메세지의 가시 시간 아래와 같이 **커스텀 Handler()를 통해 변경 가능.**
+
+Handler를 이용해 토스트 메시지를 1초 동안 표시
+
+```kotlin
+val toast = Toast.makeText(this, "message" , Toast.LENGTH_SHORT)// ✅ 토스트 객체 생성
+
+toast.show()// ✅ 토스트 메세지 표시
+
+Handler().postDelayed(Runnable {// ✅ Runnable을 사용한 지연 취소
+    run(){
+        toast.cancel()
+    }
+},1000)// ✅ 밀리초 단위로 수정
+```
+
+- Handler().postDelayed를 사용해 지정된 지연 시간 후에 특정 작업을 수행하도록 한다.
+- run()에서 toast.cancel()을 호출하여 토스트 메세지를 취소한다.
