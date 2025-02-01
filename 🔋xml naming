@@ -1,0 +1,78 @@
+## **레이아웃 주요 구성 요소**
+
+<aside>
+💡
+
+- Button - btn
+- EditText - et
+- TextView - tv
+- ImageView - iv
+- LinearLayout -ll
+- RelativeLayout - rl
+</aside>
+
+<aside>
+💡
+
+- ProgressBar - pb
+- Checkbox - chk
+- ToggleButton - tb
+- Spinner - spn
+- Menu - mnu
+- ListView - lv
+</aside>
+
+🌼보통 UI의 대문자 부분을 따서 축약하여 내가 명명한 id 앞에 붙여준다.
+
+Layout
+
+> [what_where].xml OR [what_where_description].xml
+> 
+- 예시) activity_main.xml , activity_main_search.xml
+
+### Drawables
+
+이미지는 경우에 따라서 더 세세하게 분류할 수 있다.
+
+> [what_where_description_size].png
+> 
+- what : ic, bg, img, logo ..
+- where : launcher, navi, tab ..
+- description : radio_btn, star, check ..
+- size : 24dp, small ..
+- 예시) ic_launcher_background.png, ic_check_white.png
+
+또는 이렇게도 표현할 수 있다.
+
+> [what_where_description_suffix].png
+> 
+
+### suffix 란 (최대 6단계로 표현가능)
+
+> [direction_shape_outline_status_color_size]
+> 
+- direction : left, right, down ..
+- shape : circle, square ..
+- outline : outline, border ..
+- status : normal, mute, off ..
+- color : black, white ..
+- size : 24dp, small ..
+- 예시) ic_launcher_volume_off_white_36dp.png, bg_paris_120h.png
+
+### Ids
+
+액티비티에 대한 모든 컴포넌트는 액티비티 이름으로 시작해야 한다. 또한 모든 컴포넌트는 Button[Btn]과 같이 접두사를 사용한다.
+
+> [what_where_description]
+> 
+- 예시) activity_login_btnLogout, activity_main_btn
+- 예시) activity_login_btnLogin, activity_login_etUsername, activity_login_etPassword
+
+### Basic Principle
+
+> [what]-[where]-[description]-[size]
+> 
+- what : activity, fragment, item ..
+- where : main, user, settings ..
+- description : title, content, profile ..
+- size : 24dp, small .. (option)
