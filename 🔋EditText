@@ -1,0 +1,58 @@
+<aside>
+💡
+
+- Text 입력 및 수정까지 가능한 뷰
+</aside>
+
+text view가 가진 여러 기능들을 바탕으로 사용자로부터 입력을 받을 수 있는 기능이 추가된 UI가 
+edit text이다. edit text는 말 그대로 text를 보여준다. 따라서 text view를 상속 받는다.
+
+text view가 부모👴 edit text가 자식👶
+
+## 나의 예시 코드
+
+```java
+<EditText
+        android:id="@+id/et_psd"
+        android:layout_centerHorizontal="true"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/et_name"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/user_information"
+        android:hint="비밀번호"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:inputType="textPassword"/>
+```
+
+## EditText의 속성들
+
+### hint
+
+EditText 배경에 속성값으로 지정한 문자열을 나타나게 한다. Text 영역에 어떠한 내용을 입력하라는 간단한 안내 문구나 텍스트 입력 예시를 표시할 때 사용한다. 
+(예시: 로그인 창에서 “아이디나 전화번호를 입력해 주세요”)
+➕**textColorHint** 속성은 hint 속성에 의해 지정된 문자열의 색상을 지정할 때 사용
+
+### enabled
+
+부모 클래스로부터 상속 받은 속성 중 enabled 속성을 사용하면 EditText에 텍스트를 입력 및 수정이 불가능한 상태로 설정할 수 있다. default 속성 값은 true로 사용 가능한 상태이며 false로 지정하게 되면 EditText를 사용할 수 없는 상태가 된다.
+
+### maxLength
+
+EditText에 입력 가능한 텍스트의 수를 지정할 때 사용
+`android:maxLength="1"   // 한 글자만 입력`
+
+### **selectAllOnFocus**
+
+EditText를 클릭했을 때 텍스트 영역을 전체 선택된 상태를 만들 때 사용한다. EditText를 클릭하고  입력하면 기존에 있는 텍스트 내용은 전부 삭제되고 새로 입력된 텍스트가 입력된다.
+ ➕**textColorHighlight** 속성은 EditText에서 Text에 해당하는 사각형 영역을 표현할 때 사용
+
+### textPassword
+
+`android:inputType="textPassword"`
+
+로그인 화면에서 비밀번호 입력할 때 가장 많이 사용되는 속성인 듯
+
+- 이 속성을 사용하면 비밀번호 입력할 때 ••••으로 표시되는 게 이 속성 때문!
