@@ -1,0 +1,28 @@
+🐣뷰가 페이지가 돼?… 여러 개의 뷰..?
+
+항상 뭐든 그냥 얻는 것 없다지만 얘도 ViewPager에 대한 개념은 많은데 ViewPager2에 대해선 개념 정리한 글들이 많이 없어서 자료 찾는 거 은근 힘들었다. → 사실 “에이, 설마 이게 끝이라고?” 하면서 기능 더 있나 없나 찾아봐서 그런 걸 수도.
+
+## ViewPager
+
+<aside>
+💡
+
+여러 개의 뷰를 좌우로 슬라이딩하며 화면에 표시할 수 있도록 하는 역할
+
+</aside>
+
+- 탭 메뉴나 이미지 슬라이더 등 다양한 용도로 사용되며, 여러 개의 뷰를 일정한 간격으로 배치하여 스크롤 가능한 화면을 구성 ⭕
+- recyclerView랑 비슷해 보이지만, 뷰페이저를 이용한 것은 일정 부분 화면이 넘어가면 화면이 전환되는 특징을 가지고 있다.
+- 📢🚨 현재  ViewPager는 지원 중단되고 [**`ViewPager2`**](https://developer.android.com/reference/kotlin/androidx/viewpager2/widget/ViewPager2?hl=ko) 라이브러리로 대체됌
+
+## **개선된 ViewPager2**
+
+- ViewPager가 개선된 버전 → ViewPager2
+- **`android:orientation`** 설정 → 세로 페이징 지원
+- **`android:layoutDirection`** 설정 → 오른쪽에서 왼쪽(RTL) 페이징 지원
+
+⇒ 가로 페이징 + 세로 페이징 지원 (방향 설정⭕)
++ 왼쪽 -> 오른쪽으로 넘기기  왼쪽 <- 오른쪽 넘기기 모두 가능
+
+- ❓RecyclerView 기반으로 빌드 → DiffUtil 유틸리티 클래스에 접근 가능
+- viewPager2 는 RecyclerView 를 활용하기 때문에 구현하는 방법도 비슷하고 DiffUtil 클래스를 활용할 수 있다!RecyclerView.Adpater 를 사용할 수 있다.
