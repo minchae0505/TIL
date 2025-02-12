@@ -1,0 +1,22 @@
+# App Bar
+
+<aside>
+💡
+
+현재 화면의 타이틀을 포함하고 현재 화면에서 사용자가 할 수 있는 다양한 action을 담고 있는 막대 모양의 뷰
+
+</aside>
+
+- App bar라고 하는 것은 Material Design의 디자인 명칭이고, 실제 구현되는 건 ActionBar 또는 Toolbar이다.
+- History
+    
+    ActionBar는 Android 3.0 (API level 11)이 나오면서 Activity에 붙은 형태로 등장했다.
+    
+    이후로 쭈욱 ActionBar가 사용되다가 Android L (API level 21)부터 Toolbar widget을 사용하여 ActionBar를 사용할 수 있게 됐다. ActionBar는 Activity에 종속적인 문제와 함께, 안드로이드 버전에 따라 다르게 동작할 여지가 있었다. Toolbar는 Activity 종속성도 없지만, support library를 통해 지원이 시작되어 호환성 문제도 없었다. 그럼 그냥 Toolbar를 쓰면 될 거 같은데, 왜 ActionBar형태로 사용하도록 지원하는 걸까? ActionBar 형태의 테마는 여전히 사용되고 Backward compatibility도 지원해야 하므로 Toolbar를 생성해서 사용하되, 이걸 ActionBar에 호환되도록 만든 것으로 보인다.
+    
+
+ActionBar는 과거의 유물이고 Toolbar로 대체되는 게 맞겠지만, App bar로서 ActionBar도 여전히 유효한 형태이고 예전 버전 호환성을 유지해야 하기 때문에
+
+**1) ActionBar형태를 사용하되, 구현은 Toolbar로 하는 방법과**
+
+**2) ActionBar를 사용하지 않도록 설정하고 Toolbar만을 사용하는 두 가지 전부 유효한 상황이다.**
