@@ -30,25 +30,7 @@ Activity = (특별한 목적을 위한) 활동
     - 1개 이상의 View 또는 ViewGroup을 포함한다.
     - activity내에 프래그먼트(Fragment)를 추가하여 화면을 분할 시킬 수 있다.
 
-# 생명 주기
-
-생명 주기의 단계 간 전환을 보면  `Activity` 클래스는 6가지 콜백으로 이루어진 핵심 메소드를 제공. [`onCreate()`](https://developer.android.com/reference/android/app/Activity?hl=ko#onCreate(android.os.Bundle)), [`onStart()`](https://developer.android.com/reference/android/app/Activity?hl=ko#onStart()), [`onResume()`](https://developer.android.com/reference/android/app/Activity?hl=ko#onResume()),  [`onPause()`](https://developer.android.com/reference/android/app/Activity?hl=ko#onPause()), [`onStop()`](https://developer.android.com/reference/android/app/Activity?hl=ko#onStop()), [`onDestroy()`](https://developer.android.com/reference/android/app/Activity?hl=ko#onDestroy()) .
-
-시스템은 활동이 새 상태로 전환될 때 이러한 각 콜백이 호출된다.
-
-![activity_lifecycle.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/96c0343c-2cb9-4aeb-9291-0ef4be07e17c/b89c69d0-eba5-4c25-9cd4-00c6e5f93821/activity_lifecycle.png)
-
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/96c0343c-2cb9-4aeb-9291-0ef4be07e17c/56f6d7c5-e2ff-4e42-bdea-9b6d02b7a694/image.png)
-
-### onCreate()
-
-이 메소드는  먼저 activity를 필수적으로 구현해야 한다.
-
-⭐시스템이 Activity를 생성할 때 실행되는 것으로 가장 먼저 호출(→ 필수적으로 구현 해야 한다)
-
-- 생명 주기 통틀어서 딱 1번만 수행되는 메소드
-- 화면 Layout 정의, View 생성, Databinding 등은 이곳에 구현
-- 따라서 Activity 최초 실행에 해야 하는 작업을 수행하기에 적합
+ 적합
 - Activity가 생성되면 *생성됨* 상태가 된다.
 
  `onCreate()` 메서드가 실행을 완료하면 활동이 *Started* 상태가 되고 
